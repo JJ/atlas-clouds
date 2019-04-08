@@ -107,9 +107,32 @@ az vm create -g CCGroupEU -n bobot --image UbuntuLTS
     db.vm.network "private_network", ip: "192.168.0.11"
   end
 end</code></pre>
+	    <aside class='notes'>Vagrant is increasingly used for local deployments, but it's quite useful defining infraestructure in a system-independent way</aside>
 	  </section>
 
-	  <section><h1>... to the complex </h1>
+	  <section><h1>... to the nuts and bolts ... </h1>
+	    <pre><code>- hosts: "{{target}}"
+  sudo: yes
+  tasks:
+    - name: install prerrequisites
+      command: apt-get update -y && apt-get upgrade -y
+      command: apt-get install aptitude python-apt -y
+    - name: install packages
+      apt: pkg={{ item}}
+      with_items:
+        - git 
+        - curl 
+        - build-essential 
+        - libssl-dev
+        - nodejs
+        - npm
+    - name: Create links
+      command: ln -s /usr/bin/nodejs /usr/bin/node
+      ignore_errors: yes
+    - name: Create profile
+copy: content="export PAPERTRAIL_PORT={{PAPERTRAIL_PORT}}; export PAPERTRAIL_HOST={{PAPERTRAIL_HOST}}" dest=/home/cloudy/.profile
+	    </code></pre> <aside class='notes'>This will not fit in, but gives you an idea of all you can define so that you have infrastructure (services and applications, in this case) defined as code.</aside>
+		<section><h1>... to the complex </h1>
 
 	    <pre><code>FROM rabbitmq:latest
 LABEL version="0.1" maintainer='jjmerelo@gmail.com'
