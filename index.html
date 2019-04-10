@@ -317,7 +317,8 @@ spec:
             methods to reflect that</h1>
           </section>
 
-          <section><h1>Thanks a lot!</h1>
+          <section>
+	    <h1>Thanks a lot!</h1>
             <h2>Questions?</h2>
           </section>
           
@@ -326,23 +327,24 @@ spec:
     </div>
 
     <script src="js/reveal.js"></script>
-
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-		 Reveal.initialize({
-                  width: '95%',
-		  controls: true,
-		  progress: true,
-		  history: true,
-		 dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
+    
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+      width: '95%',
+      controls: true,
+      progress: true,
+      history: true,
+      touch: true,
+      transition: 'concave',
+      dependencies: [
+      { src: 'plugin/markdown/marked.js' },
+      { src: 'plugin/markdown/markdown.js' },
+      { src: 'plugin/notes/notes.js', async: true },
+      { src: 'plugin/highlight/highlight.js', async: true }				]
+      });
 		</script>
 	</body>
 </html>
